@@ -37,13 +37,15 @@ class DatasetTrain(torch.utils.data.Dataset):
         x_values = np.array(x_values, dtype=np.float32)
         y_values = np.array(y_values, dtype=np.float32)
 
+        y_values = y_values/1000000.0
+
         plt.figure(1)
         plt.plot(x_values, y_values, "k.")
         plt.ylabel("y")
         plt.xlabel("x")
         plt.xlim([0, 60])
-        plt.ylim([0, 2500000])
-        plt.title("training data\nx: area (m^2), y: price (SEK)")
+        plt.ylim([0, 2.5])
+        plt.title("training data\nx: area (m^2), y: price (MSEK)")
         plt.savefig("training_data.png")
         plt.close(1)
 
@@ -69,7 +71,7 @@ class DatasetTrain(torch.utils.data.Dataset):
     def __len__(self):
         return self.num_examples
 
-_ = DatasetTrain()
+#_ = DatasetTrain()
 
 class DatasetEval(torch.utils.data.Dataset):
     def __init__(self, dataset="val"):
@@ -99,13 +101,15 @@ class DatasetEval(torch.utils.data.Dataset):
         x_values = np.array(x_values, dtype=np.float32)
         y_values = np.array(y_values, dtype=np.float32)
 
+        y_values = y_values/1000000.0
+
         plt.figure(1)
         plt.plot(x_values, y_values, "k.")
         plt.ylabel("y")
         plt.xlabel("x")
         plt.xlim([0, 60])
-        plt.ylim([0, 2500000])
-        plt.title("evaluation data\nx: area (m^2), y: price (SEK)")
+        plt.ylim([0, 2.5])
+        plt.title("evaluation data\nx: area (m^2), y: price (MSEK)")
         plt.savefig("evaluation_data.png")
         plt.close(1)
 
@@ -131,4 +135,4 @@ class DatasetEval(torch.utils.data.Dataset):
     def __len__(self):
         return self.num_examples
 
-_ = DatasetEval()
+#_ = DatasetEval()
